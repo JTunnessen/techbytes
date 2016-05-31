@@ -1,18 +1,23 @@
 <p id="notice"><%= notice %></p>
+<%= link_to 'Back', posts_path, class: "btn btn-warning"%>
 
 <p>
-  <strong>Title:</strong>
-  <%= @post.title %>
+  <h1><%= @post.title %></h1>  
 </p>
-
 <p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<p>
-  <strong>Tags:</strong>
+  <span><small><strong>Tags:</strong></small></span>
   <%= @post.tags %>
+</p>
+<p>
+  <span><strong>Post #</span>
+  <%= @post.id %></strong>
+</p>
+<p>
+  <span><strong>Released</strong></span>
+  <%= @post.created_at %>
+</p>
+<p>
+  <%= @post.body %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |

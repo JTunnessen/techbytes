@@ -14,8 +14,8 @@
   <%= @video.tags %>
 </p>
 <p>
-	<span><strong>Video #</strong></span>
-	<%= @video.id %>
+	<span><strong>Video #</span>
+	<%= @video.id %></strong>
 </p>
 <p>
 	<span><strong>Released</strong></span>
@@ -26,7 +26,7 @@
 </p>
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
-<%= link_to 'Back', videos_path %>
+<%= link_to 'Back', videos_path, class: "btn btn-warning" %>
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
