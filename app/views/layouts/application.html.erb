@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Techbytes</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechBytes<%= " || #{page_title} " if @page_title %></title>
+  <link rel="icon" type="image/ico" href="/images/favicon.ico"/>
+  <meta name="description" content="Your source for diving into the technology that powers the digital planet. Learn the many powerful aspects of the Python Programming language from beginner to expert. Creating a digital community to encourage STEM development in kids, adults, veterans, and the continuously learning.">
+  <meta name="author" content="Jim Tunnessen">
+  <meta name="keywords" content="python, programming, code, coding, game development, scripting, functional programming, object-oriented programming, open source, ruby, rails, elixer, phoenix, screencasts, cyber security, hacking, hackers, HTML5, javascript, responsive web design, mobile, vimeo, vevo, youtube, video, library, upload">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'main', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -16,5 +24,9 @@
 
 
 </body>
+<br>
+<footer>
+	<span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span> 2016 Jim Tunnessen
+</footer>
 </div><!-- container -->
 </html>
