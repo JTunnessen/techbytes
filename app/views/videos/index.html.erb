@@ -6,21 +6,21 @@
     <% @videos.each do |video| %>
     
         
-        <h3><%= video.title %></h3>
+        <h3><%= link_to "#{video.title}", video %></h3>
         <div><small>uploaded <%= time_ago_in_words(video.created_at) %> ago</small></div>
         <div class="tags">tags: <%= video.tags %></div>
         <p><div class="embed-container">
         <%= embed(video.video) %>
         </div></p>
         <p>
-        <span><strong>Video #</strong></span>
-        <%= video.id %>
+        <span><strong>Video #</span>
+        <%= video.id %></strong>
         </p>
         <p>
         <span><strong>Released</strong></span>
         <%= video.created_at %>
         </p>
-        <p><%= video.description %></p>       
+        <p><%= truncate(video.description, length: 50, omission: "...(continued)") %></p>       
         <p><%= link_to 'Show', video %>
         <%= link_to 'Edit', edit_video_path(video) %>
         <%= link_to 'Delete', video, method: :delete, data: { confirm: 'Are you sure?' } %></p>
