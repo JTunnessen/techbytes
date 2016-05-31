@@ -1,23 +1,28 @@
 <p id="notice"><%= notice %></p>
+<%= link_to 'Back', videos_path, class: "btn btn-warning"%>
 
 <p>
-  <strong>Title:</strong>
-  <%= @video.title %>
+  <div class="embed-container">
+    <%= embed(@video.video) %>
+   </div>
 </p>
-
 <p>
-  <strong>Video:</strong>
-  <%= @video.video %>
+  <h1><%= @video.title %></h1>  
 </p>
-
 <p>
-  <strong>Description:</strong>
-  <%= @video.description %>
-</p>
-
-<p>
-  <strong>Tags:</strong>
+  <span><small><strong>Tags:</strong></small></span>
   <%= @video.tags %>
+</p>
+<p>
+	<span><strong>Video #</strong></span>
+	<%= @video.id %>
+</p>
+<p>
+	<span><strong>Released</strong></span>
+	<%= @video.created_at %>
+</p>
+<p>
+  <%= @video.description %>
 </p>
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
