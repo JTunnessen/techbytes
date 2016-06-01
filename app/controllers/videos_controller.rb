@@ -4,7 +4,8 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.all.order("id DESC")
+    @q = Video.ransack(params[:q])
+    @videos = @q.result(distinct: true)
   end
 
   # GET /videos/1

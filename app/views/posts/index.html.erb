@@ -6,10 +6,12 @@
   <div class="col-md-6">  
     <form role="search" class="form-inline">
         <div class="form-group">
-         <span><input type="text" class="form-control" placeholder="Search Blog">
+          <%= search_form_for @q, url: posts_path, html: { method: :post } do |f| %>
+         <span><input type="text" class="form-control" placeholder="Search Blog" <%= f.search_field :title_or_tags_or_id_cont %>>
           </span>
         <button type="submit" class="btn btn-danger">Submit</button>
         </div>
+        <% end %>
       </form>
     <% @posts.each do |post| %>
     
