@@ -21,11 +21,11 @@
 	<span><strong>Released</strong></span>
 	<%= @video.created_at %>
 </p>
-<p>
+<p class="description">
   <%= @video.description %>
 </p>
 
-<%= link_to 'Edit', edit_video_path(@video) %> |
+<%= link_to 'Edit', edit_video_path(@video), class: "btn btn-info" %> |
 <%= link_to 'Back', videos_path, class: "btn btn-warning" %>
 
 <div id="disqus_thread"></div>

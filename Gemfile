@@ -29,6 +29,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # UI
 gem 'bootstrap_jt'
 gem 'font-awesome-sass'
+gem 'redcarpet'
+gem 'coderay'
 
 # Authentication
 gem 'devise'

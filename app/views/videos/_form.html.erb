@@ -11,22 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :video %><br>
-    <%= f.text_field :video %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :tags %><br>
-    <%= f.text_field :tags %>
-  </div>
+  <input type="text" class="form-control" placeholder="Title"
+    <%= f.text_field :title, autofocus: true %></input>
+  <br>
+  <input type="text" class="form-control" placeholder="Video"
+    <%= f.text_field :video %></input>
+  <br>
+  <textarea class="form-control" rows="25" placeholder="Description"
+    <%= f.text_area :description %></textarea>
+  <br>
+  <input type="text" class="form-control" placeholder="Tags"
+    <%= f.text_field :tags %></input>
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>
