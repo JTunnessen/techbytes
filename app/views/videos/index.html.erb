@@ -7,7 +7,7 @@
   <form role="search" class="form-inline">
         <div class="form-group">
           <%= search_form_for @q, url: videos_path, html: { method: :post } do |f| %>
-         <span><input type="text" class="form-control" placeholder="Search Screencasts" <%= f.search_field :title_or_tags_or_id_cont %>
+         <span><input type="text" class="form-control" placeholder="Search Screencasts" <%= f.search_field :title_or_tags_cont %>
           </span>
         <button type="submit" class="btn btn-danger">Submit</button>
         <% end %>
