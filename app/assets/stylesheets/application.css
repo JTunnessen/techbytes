@@ -27,3 +27,11 @@
  	padding-left: 20%;
  	padding-right: 20%;
  }
+
+ .text-danger {
+ 	color: red;
+ }
+
+ .text-blue {
+ 	color: blue;
+ }

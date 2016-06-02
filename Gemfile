@@ -38,6 +38,9 @@ gem 'devise'
 # Search
 gem 'ransack'
 
+# Reputation Voting
+gem 'activerecord-reputation-system'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

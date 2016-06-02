@@ -3,4 +3,9 @@ class Admin < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :posts, :videos
+
+  has_reputation :votes, source: {reputation: :votes, of: :posts}, aggregated_by: :sum
+
 end

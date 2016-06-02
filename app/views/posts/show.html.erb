@@ -16,6 +16,24 @@
   <span><strong>Released</strong></span>
   <%= @post.created_at %>
 </p>
+<p>
+  Score:
+    <% if @post.reputation_for(:votes).to_i > 0%>
+    <h5 class="text-blue"><%= @post.reputation_for(:votes).to_i %>
+    <i class="fa fa-thumbs-o-up"></i></h5>
+    <% elsif @post.reputation_for(:votes).to_i < 0 %>
+    <h5 class="text-danger"><%= @post.reputation_for(:votes).abs %>
+    <i class="fa fa-bomb"></i></h5>
+    <% else %>
+    <h5><%= pluralize @post.reputation_for(:votes).to_i, "thought" %></h5>
+    <% end %><br>
+    <% if current_user && !current_user.voted_for?(@post) %>
+      <%= link_to " Cool", vote_post_path(type: "up"), method: "post", class: "fa fa-thumbs-o-up text-blue" %> - or - <%= link_to " Fail", vote_post_path(type: "down"), method: "post", class: "fa fa-bomb text-danger" %>
+    <% end %>  
+
+</p>
+
+
 <p class="description">
   <%= markdown(@post.body) %>
 </p>
