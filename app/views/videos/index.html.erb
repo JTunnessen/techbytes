@@ -43,7 +43,7 @@
           <h5><%= pluralize video.reputation_for(:votes).to_i, "thought" %></h5>
           <% end %>
         </p>
-        <p><%= truncate(video.description, length: 50, omission: "...(continued)").html_safe %></p>       
+        <p><%= truncate(video.description, length: 50, omission: "...(continued)") %></p>       
         <p><%= link_to 'Show', video %>
         <%= link_to 'Edit', edit_video_path(video) %>
         <%= link_to 'Delete', video, method: :delete, data: { confirm: 'Are you sure?' } %></p>
