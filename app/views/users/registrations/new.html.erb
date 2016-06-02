@@ -10,11 +10,11 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <input type="text" class="form-control" placeholder="Password"
+    <input type="password" class="form-control" placeholder="Password"
     <%= f.password_field :password, autocomplete: "off" %></input>
   <br>
 
-    <input type="text" class="form-control" placeholder="Password Confirmation"
+    <input type="password" class="form-control" placeholder="Password Confirmation"
     <%= f.password_field :password_confirmation, autocomplete: "off" %></input>
   <br>
 

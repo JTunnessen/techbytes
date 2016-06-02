@@ -2,8 +2,8 @@
 <div class="pull-right">
 <%= link_to 'New Post', new_post_path, class: "btn btn-primary" %>
 </div>
-<div class="row"><!-- row 1 --> 
-  <div class="col-md-6">  
+<div class="row"><!-- row 1 -->
+  <div class="col-md-6">
     <form role="search" class="form-inline">
         <div class="form-group">
           <%= search_form_for @q, url: posts_path, html: { method: :post } do |f| %>
@@ -14,8 +14,8 @@
         <% end %>
       </form>
     <% @posts.each do |post| %>
-    
-        
+
+
         <h3><%= link_to "#{post.title}", post %></h3>
         <div><small>posted <%= time_ago_in_words(post.created_at) %> ago</small></div>
         <div class="tags">tags: <%= post.tags %></div>
@@ -38,12 +38,13 @@
         <% end %>
         </p>
         <br>
-        <p><%= truncate(post.body.html_safe, length: 250, omission: "...(continued)") %></p>       
+        <p><%= truncate(post.body.html_safe, length: 250, omission: "...(continued)") %></p>
         <p><%= link_to 'Show', post %>
         <%= link_to 'Edit', edit_post_path(post) %>
-        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </p>
         <hr>
-      
+
     <% end %>
 
 <br>
@@ -52,5 +53,3 @@
 
   </div>
 </div> <!-- row 1 -->
-
-

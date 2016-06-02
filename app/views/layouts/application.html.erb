@@ -17,9 +17,12 @@
 </head>
 <div class="container">
 <body>
-
+  <% if admin_signed_in? %>
+  <strong><%= "The Administrator #{current_admin.email} is signed in." %></strong>
+  <%= link_to 'Logout', destroy_admin_session_path, method: :delete %>
+  <br>
+  <% end %>
 	<%= render "layouts/navbar" %>
-	
 	<%= yield %>
 
 

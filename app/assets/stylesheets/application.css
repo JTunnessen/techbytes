@@ -16,16 +16,6 @@
  *= require_self
  */
 
- body {
- 	text-align: center;
- }
-
- .description {
- 	text-align: left;
- 	padding-left: 20%;
- 	padding-right: 20%;
- }
-
  .text-danger {
  	color: red;
  }
