@@ -13,9 +13,11 @@
         <% end %>
         </div>
       </form> 
+      <br>
     <% @videos.each do |video| %>
     
-        
+      <tr>
+        <td>
         <h3><%= link_to "#{video.title}", video %></h3>
         <div><small>uploaded <%= time_ago_in_words(video.created_at) %> ago</small></div>
         <div class="tags">tags: <%= video.tags %></div>
@@ -34,7 +36,7 @@
         <p><%= link_to 'Show', video %>
         <%= link_to 'Edit', edit_video_path(video) %>
         <%= link_to 'Delete', video, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-        <hr>
+      <hr>    
       
     <% end %>
 
