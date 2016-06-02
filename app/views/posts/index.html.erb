@@ -17,7 +17,7 @@
     
         
         <h3><%= link_to "#{post.title}", post %></h3>
-        <div><small>uploaded <%= time_ago_in_words(post.created_at) %> ago</small></div>
+        <div><small>posted <%= time_ago_in_words(post.created_at) %> ago</small></div>
         <div class="tags">tags: <%= post.tags %></div>
         <span><strong>Post #</span>
         <%= post.id %></strong>
@@ -26,7 +26,19 @@
         <span><strong>Released</strong></span>
         <%= post.created_at %>
         </p>
-        <p><%= truncate(post.body, length: 250, omission: "...(continued)") %></p>       
+        <p>
+        <% if post.reputation_for(:votes).to_i > 0%>
+          <h5 class="text-blue"><%= post.reputation_for(:votes).to_i %>
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i></h5>
+          <% elsif post.reputation_for(:votes).to_i < 0 %>
+          <h5 class="text-danger"><%= post.reputation_for(:votes).to_i %>
+          <i class="fa fa-bomb"></i></h5>
+          <% else %>
+          <h5><%= pluralize post.reputation_for(:votes).to_i, "thought" %></h5>
+        <% end %>
+        </p>
+        <br>
+        <p><%= truncate(post.body.html_safe, length: 250, omission: "...(continued)") %></p>       
         <p><%= link_to 'Show', post %>
         <%= link_to 'Edit', edit_post_path(post) %>
         <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>

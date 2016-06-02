@@ -21,8 +21,24 @@
 	<span><strong>Released</strong></span>
 	<%= @video.created_at %>
 </p>
+<p>
+  <span>Score:</span><% if @video.reputation_for(:votes).to_i > 0%>
+    <h5 class="text-blue"><%= @video.reputation_for(:votes).to_i %>
+    <i class="fa fa-thumbs-up" aria-hidden="true"></i></h5>
+    <% elsif @video.reputation_for(:votes).to_i < 0 %>
+    <h5 class="text-danger"><%= @video.reputation_for(:votes).to_i %>
+    <i class="fa fa-bomb"></i></h5>
+    <% else %>
+    <h5><%= pluralize @video.reputation_for(:votes).to_i, "thought" %></h5>
+    <% end %><br>
+    
+      <%= link_to " Cool", vote_video_path(type: "up"), method: "post", class: "fa fa-thumbs-up" %> - or - <%= link_to " Fail", vote_video_path(type: "down"), method: "post", class: "fa fa-bomb" %>
+    
+
+</p>
+
 <p class="description">
-  <%= @video.description %>
+  <%= @video.description.html_safe %>
 </p>
 
 <%= link_to 'Edit', edit_video_path(@video), class: "btn btn-info" %> |

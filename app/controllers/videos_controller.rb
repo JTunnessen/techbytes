@@ -22,6 +22,13 @@ class VideosController < ApplicationController
   def edit
   end
 
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @video = Video.find(params[:id])
+    @video.add_or_update_evaluation(:votes, value, current_user)
+    redirect_to :back, notice: "Thanks for your vote."
+  end
+
   # POST /videos
   # POST /videos.json
   def create

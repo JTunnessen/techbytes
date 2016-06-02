@@ -32,7 +32,18 @@
         <span><strong>Released</strong></span>
         <%= video.created_at %>
         </p>
-        <p><%= truncate(video.description, length: 50, omission: "...(continued)") %></p>       
+        <p>
+          <span>Score:</span><% if video.reputation_for(:votes).to_i > 0%>
+          <h5 class="text-blue"><%= video.reputation_for(:votes).to_i %>
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i></h5>
+          <% elsif video.reputation_for(:votes).to_i < 0 %>
+          <h5 class="text-danger"><%= video.reputation_for(:votes).to_i %>
+          <i class="fa fa-bomb"></i></h5>
+          <% else %>
+          <h5><%= pluralize video.reputation_for(:votes).to_i, "thought" %></h5>
+          <% end %>
+        </p>
+        <p><%= truncate(video.description, length: 50, omission: "...(continued)").html_safe %></p>       
         <p><%= link_to 'Show', video %>
         <%= link_to 'Edit', edit_video_path(video) %>
         <%= link_to 'Delete', video, method: :delete, data: { confirm: 'Are you sure?' } %></p>

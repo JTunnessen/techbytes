@@ -4,7 +4,7 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :posts, :videos
+  has_many :posts
 
   has_reputation :votes, source: {reputation: :votes, of: :posts}, aggregated_by: :sum
 
