@@ -18,7 +18,25 @@
         <li><%= link_to "Tech Blog", posts_path %></li>
         <li><a href="#">Guides</a></li>
         <li><a href="#">Basics</a></li>
-        <li><a href="#">Profile</a></li>
+        <li class="divider"></li>
+
+              <% if user_signed_in? %>
+                
+                <li class='login'><%= link_to current_user.email, edit_user_registration_path %>
+                </li>
+                <li class="divider"></li>
+                <li>
+                <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+                </li>
+                
+              <% else %>
+                <li>
+                <%= link_to 'Sign_up', new_user_registration_path %>
+                </li>
+                <li class="divider"></li>
+                <li>
+                <%= link_to 'Login', new_user_session_path %>
+              <% end %>
         
       </ul>
     </div><!-- /.navbar-collapse -->
