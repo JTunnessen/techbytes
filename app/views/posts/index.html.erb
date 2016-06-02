@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
+<% if can? :create, @post %>
 <div class="pull-right">
 <%= link_to 'New Post', new_post_path, class: "btn btn-primary" %>
 </div>
+<% end %>
 <div class="row"><!-- row 1 -->
   <div class="col-md-6">
     <form role="search" class="form-inline">
@@ -40,8 +42,10 @@
         <br>
         <p><%= truncate(post.body.html_safe, length: 250, omission: "...(continued)") %></p>
         <p><%= link_to 'Show', post %>
+        <% if can? :update, @post %>
         <%= link_to 'Edit', edit_post_path(post) %>
         <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
         </p>
         <hr>
 

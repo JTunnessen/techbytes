@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
 
 
   validates_uniqueness_of :email, :within => 7..255
-
+  has_many :videos
+  has_many :posts
 #  has_many :evaluations, class_name: "RSEvaluation", as: :source
 
 # def voted_for?(post)

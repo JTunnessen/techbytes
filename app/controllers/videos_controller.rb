@@ -1,6 +1,7 @@
 class VideosController < ApplicationController
-  before_action :authenticate_admin!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
   before_action :set_video, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /videos
   # GET /videos.json

@@ -18,6 +18,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %></input>
   <br>
 
+    <%= f.check_box :admin %>  <label>ADMIN</label>
+
+    <br>
+
   <div class="actions">
     <%= f.submit "Sign up", class: "btn btn-info" %>
   </div>

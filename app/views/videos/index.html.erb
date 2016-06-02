@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
+<% if can? :create, @video %>
 <div class="pull-right">
 <%= link_to 'New Video', new_video_path, class: "btn btn-primary" %>
 </div>
-<div class="row"><!-- row 1 --> 
-  <div class="col-md-6"> 
+<% end %>
+<div class="row"><!-- row 1 -->
+  <div class="col-md-6">
   <form role="search" class="form-inline">
         <div class="form-group">
           <%= search_form_for @q, url: videos_path, html: { method: :post } do |f| %>
@@ -12,10 +14,10 @@
         <button type="submit" class="btn btn-danger">Submit</button>
         <% end %>
         </div>
-      </form> 
+      </form>
       <br>
     <% @videos.each do |video| %>
-    
+
       <tr>
         <td>
         <h3><%= link_to "#{video.title}", video %></h3>
@@ -43,12 +45,14 @@
           <h5><%= pluralize video.reputation_for(:votes).to_i, "thought" %></h5>
           <% end %>
         </p>
-        <p><%= truncate(video.description, length: 50, omission: "...(continued)") %></p>       
+        <p><%= truncate(video.description, length: 50, omission: "...(continued)") %></p>
         <p><%= link_to 'Show', video %>
+        <% if can? :update, @videos %>
         <%= link_to 'Edit', edit_video_path(video) %>
-        <%= link_to 'Delete', video, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-      <hr>    
-      
+        <%= link_to 'Delete', video, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %></p>
+      <hr>
+
     <% end %>
 
 <br>
@@ -57,6 +61,3 @@
 
   </div>
 </div> <!-- row 1 -->
-
-
-

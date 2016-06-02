@@ -11,7 +11,7 @@ class Video < ActiveRecord::Base
 	validates_presence_of :description
 	validates_presence_of :tags
 
-	belongs_to :admin
+	belongs_to :user
 
 	has_reputation :votes, source: :user, aggregated_by: :sum
 end

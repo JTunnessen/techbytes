@@ -17,12 +17,16 @@
 </head>
 <div class="container">
 <body>
-  <% if admin_signed_in? %>
-  <strong><%= "The Administrator #{current_admin.email} is signed in." %></strong>
-  <%= link_to 'Logout', destroy_admin_session_path, method: :delete %>
+  <% if current_user.admin? %>
+  <strong><%= "The Administrator #{current_user.email} is signed in." %></strong>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
   <br>
   <% end %>
 	<%= render "layouts/navbar" %>
+  <div id="content">
+						<% if notice %><div class="alert alert-info"><%= notice %></div><% end %>
+						<% if alert %><div class="alert alert-danger"><%= alert %></div><% end %>
+					</div>
 	<%= yield %>
 
 

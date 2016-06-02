@@ -34,6 +34,9 @@ gem 'coderay'
 # Authentication
 gem 'devise'
 
+# Authorization
+gem 'cancancan', '~> 1.10'
+
 # Search
 gem 'ransack'
 
