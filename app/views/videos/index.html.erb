@@ -32,7 +32,7 @@
         </p>
         <p>
         <span><strong>Released</strong></span>
-        <%= video.created_at %>
+        <%= video.created_at.strftime("%B %-d, %Y") %>
         </p>
         <p>
           <span>Score:</span><% if video.reputation_for(:votes).to_i > 0%>

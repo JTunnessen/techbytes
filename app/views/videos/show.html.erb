@@ -7,7 +7,7 @@
    </div>
 </p>
 <p>
-  <h1><%= @video.title %></h1>  
+  <h1><%= @video.title %></h1>
 </p>
 <p>
   <span><small><strong>Tags:</strong></small></span>
@@ -19,7 +19,7 @@
 </p>
 <p>
 	<span><strong>Released</strong></span>
-	<%= @video.created_at %>
+	<%= @video.created_at.strftime("%B %-d, %Y") %>
 </p>
 <p>
   <span>Score:</span><% if @video.reputation_for(:votes).to_i > 0%>
@@ -31,9 +31,9 @@
     <% else %>
     <h5><%= pluralize @video.reputation_for(:votes).to_i, "thought" %></h5>
     <% end %><br>
-    
+
       <%= link_to " Cool", vote_video_path(type: "up"), method: "post", class: "fa fa-thumbs-up" %> - or - <%= link_to " Fail", vote_video_path(type: "down"), method: "post", class: "fa fa-bomb" %>
-    
+
 
 </p>
 
@@ -48,7 +48,7 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = 'igrafitti';
-    
+
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
