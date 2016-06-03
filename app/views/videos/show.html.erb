@@ -1,48 +1,56 @@
 <% @page_title = (@video.title) %>
-<div class="row"><!-- row 1 -->
-  <div class="col-md-8">
+
+<div class="row">
+  <div class="col-md-12">
     <span class="pull-left">
-<%= link_to 'Back', videos_path, class: "btn btn-warning"%></span>
-<span class="pull-right">
-      <% if @video.reputation_for(:votes).to_i > 0%>
-      <h3 class="text-blue"><%= @video.reputation_for(:votes).to_i %>
-      <i class="fa fa-star" aria-hidden="true"></i></h3>
+      <%= link_to 'Back', videos_path, class: "btn btn-warning" %></span>
+      <span class="pull-right">
+        <% if @video.reputation_for(:votes).to_i > 0%>
+        <h3 class="text-blue"><%= @video.reputation_for(:votes).to_i %>
+        <i class="fa fa-star" aria-hidden="true"></i></h3>
       <% end %>
-</span>
+      </span>
+  </div>
 </div>
-<div class="col-md-4">
-  <!-- SPACE ABOVE TEH NOTEPAD -->
-</div>
-</div><!-- row 1 -->
 <div class="row"><!-- row 2 -->
-  <div class="col-md-8"><!-- col 1 -->
+  <div class="col-md-12"><!-- col 1 -->
 <p>
   <div class="embed-container">
     <%= embed(@video.video) %>
    </div>
 </p>
+</div>
+</div><!-- col 1 -->
+<div class="row"><!-- row 3 -->
+<div class="col-md-8">
+<div class="panel panel-info">
+  <div class="panel-heading">
 <p>
   <h1 class="text-info"><%= @video.title %></h1>
   <span class="pull-right">
   <%= link_to " Favorite this Screencast", vote_video_path(type: "up"), method: "post", class: "fa fa-star" %>
   </span>
 </p>
-<p>
-  <div class="text-warning"><i class="fa fa-tags" aria-hidden="true"></i>
-  <%= @video.tags %></div>
-</p>
-<p>
+<p class="text-warning">
 	<span><strong>Video #</span>
-	<%= @video.id %></strong>
+	<%= @video.id %></strong> |
+	<span>Released</span>
+	<%= @video.created_at.strftime("%B %-d, %Y") %> |
+  <span><i class="fa fa-tags" aria-hidden="true"></i>
+  <%= @video.tags %></span>
 </p>
-<p>
-	<span><strong>Released</strong></span>
-	<%= @video.created_at.strftime("%B %-d, %Y") %>
-</p>
+</div>
+<div class="panel-body bg-info">
 <p class="description">
   <%= @video.description.html_safe %>
 </p>
+<% if current_user.try(:admin?) %>
+<%= link_to 'Edit', edit_video_path(@video), class: "btn btn-info" %> |
+<% end %>
+<%= link_to 'Back', videos_path, class: "btn btn-warning" %>
 </div><!-- col 1 -->
+</div>
+</div>
 <div class="col-md-4"><!-- col 2 -->
   <div class="panel panel-warning">
 							<div class="panel-heading">
@@ -61,13 +69,9 @@
 							</div>
 
 </div><!-- col 2 -->
-</div><!-- row 2 -->
+</div>
 <div class="row"><!-- row 3 -->
   <div class="col-md-12">
-    <% if current_user.try(:admin?) %>
-<%= link_to 'Edit', edit_video_path(@video), class: "btn btn-info" %> |
-<% end %>
-<%= link_to 'Back', videos_path, class: "btn btn-warning" %>
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
