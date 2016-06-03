@@ -1,7 +1,8 @@
 class VideosController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
-  before_action :set_video, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
+  before_action :authenticate_user!, only: [:create, :edit, :vote, :update, :destroy]
+  before_action :set_video, only: [:show, :edit, :update, :destroy]
+
 
   # GET /videos
   # GET /videos.json
@@ -28,7 +29,7 @@ class VideosController < ApplicationController
     value = params[:type] == "up" ? 1 : -1
     @video = Video.find(params[:id])
     @video.add_or_update_evaluation(:votes, value, current_user)
-    redirect_to :back, notice: "Thanks for your vote."
+    redirect_to :back, notice: "I have been FAVORITED!! :)"
   end
 
   # POST /videos

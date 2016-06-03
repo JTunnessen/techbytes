@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechBytes<%= " || #{page_title} " if @page_title %></title>
+  <title>TechBytes<%= " || #{@page_title} " if @page_title %></title>
   <link rel="icon" type="image/ico" href="/images/favicon.ico"/>
   <meta name="description" content="Your source for diving into the technology that powers the digital planet. Learn the many powerful aspects of the Python Programming language from beginner to expert. Creating a digital community to encourage STEM development in kids, adults, veterans, and the continuously learning.">
   <meta name="author" content="Jim Tunnessen">
@@ -17,7 +17,7 @@
 </head>
 <div class="container">
 <body>
-  <% if current_user.admin? %>
+  <% if current_user.try(:admin?) %>
   <strong><%= "The Administrator #{current_user.email} is signed in." %></strong>
   <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
   <br>

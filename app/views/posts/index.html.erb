@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<% if can? :create, @post %>
+<% if current_user.try(:admin?) %>
 <div class="pull-right">
 <%= link_to 'New Post', new_post_path, class: "btn btn-primary" %>
 </div>
@@ -9,7 +9,7 @@
     <form role="search" class="form-inline">
         <div class="form-group">
           <%= search_form_for @q, url: posts_path, html: { method: :post } do |f| %>
-         <span><input type="text" class="form-control" placeholder="Search Blog" <%= f.search_field :title_or_tags_cont %>
+         <span><input type="text" class="form-control" placeholder="Search Blog" <%= f.search_field :title_or_body_or_tags_cont %>
           </span>
         <button type="submit" class="btn btn-danger">Submit</button>
         </div>
@@ -42,7 +42,7 @@
         <br>
         <p><%= truncate(post.body.html_safe, length: 250, omission: "...(continued)") %></p>
         <p><%= link_to 'Show', post %>
-        <% if can? :update, @post %>
+        <% if current_user.try(:admin?) %>
         <%= link_to 'Edit', edit_post_path(post) %>
         <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>

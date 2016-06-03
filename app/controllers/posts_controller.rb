@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+
 
   # GET /posts
   # GET /posts.json
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
     value = params[:type] == "up" ? 1 : -1
     @post = Post.find(params[:id])
     @post.add_or_update_evaluation(:votes, value, current_user)
-    redirect_to :back, notice: "Thanks for your vote."
+    redirect_to :back, notice: "Yay!! You favorited me! :)"
   end
 
   # POST /posts

@@ -6,7 +6,11 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
       if user.admin?
-        can :manage, :all
+        can :manage, Post
+        can :manage, Video
+      elsif user.email?
+        can :read, :all
+        can :vote, :all
       else
         can :read, :all
       end

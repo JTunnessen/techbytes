@@ -1,17 +1,35 @@
-<p id="notice"><%= notice %></p>
-<%= link_to 'Back', videos_path, class: "btn btn-warning"%>
-
+<% @page_title = (@video.title) %>
+<div class="row"><!-- row 1 -->
+  <div class="col-md-8">
+    <span class="pull-left">
+<%= link_to 'Back', videos_path, class: "btn btn-warning"%></span>
+<span class="pull-right">
+      <% if @video.reputation_for(:votes).to_i > 0%>
+      <h3 class="text-blue"><%= @video.reputation_for(:votes).to_i %>
+      <i class="fa fa-star" aria-hidden="true"></i></h3>
+      <% end %>
+</span>
+</div>
+<div class="col-md-4">
+  <!-- SPACE ABOVE TEH NOTEPAD -->
+</div>
+</div><!-- row 1 -->
+<div class="row"><!-- row 2 -->
+  <div class="col-md-8"><!-- col 1 -->
 <p>
   <div class="embed-container">
     <%= embed(@video.video) %>
    </div>
 </p>
 <p>
-  <h1><%= @video.title %></h1>
+  <h1 class="text-info"><%= @video.title %></h1>
+  <span class="pull-right">
+  <%= link_to " Favorite this Screencast", vote_video_path(type: "up"), method: "post", class: "fa fa-star" %>
+  </span>
 </p>
 <p>
-  <span><small><strong>Tags:</strong></small></span>
-  <%= @video.tags %>
+  <div class="text-warning"><i class="fa fa-tags" aria-hidden="true"></i>
+  <%= @video.tags %></div>
 </p>
 <p>
 	<span><strong>Video #</span>
@@ -21,27 +39,34 @@
 	<span><strong>Released</strong></span>
 	<%= @video.created_at.strftime("%B %-d, %Y") %>
 </p>
-<p>
-  <span>Score:</span><% if @video.reputation_for(:votes).to_i > 0%>
-    <h5 class="text-blue"><%= @video.reputation_for(:votes).to_i %>
-    <i class="fa fa-thumbs-up" aria-hidden="true"></i></h5>
-    <% elsif @video.reputation_for(:votes).to_i < 0 %>
-    <h5 class="text-danger"><%= @video.reputation_for(:votes).to_i %>
-    <i class="fa fa-bomb"></i></h5>
-    <% else %>
-    <h5><%= pluralize @video.reputation_for(:votes).to_i, "thought" %></h5>
-    <% end %><br>
-
-      <%= link_to " Cool", vote_video_path(type: "up"), method: "post", class: "fa fa-thumbs-up" %> - or - <%= link_to " Fail", vote_video_path(type: "down"), method: "post", class: "fa fa-bomb" %>
-
-
-</p>
-
 <p class="description">
   <%= @video.description.html_safe %>
 </p>
+</div><!-- col 1 -->
+<div class="col-md-4"><!-- col 2 -->
+  <div class="panel panel-warning">
+							<div class="panel-heading">
+								<div class="panel-title"><h4><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>  NOTEPAD<br><small>Click below & Take notes here</small></h4>
+										</div>
+									</div>
+									<div class="panel-body bg-warning">
 
+									<ul id="theList" contenteditable >
+										<li>Keep notes here while you watch</li>
+									</ul><br>
+									<div class="btn-group pull-right">
+									<p><a href=javascript:void(); id="saveAll" class="btn btn-default btn-xs"><span><i class="fa fa-check-square-o" aria-hidden="true"></i></span> Save</a> <a href=javascript:void(); id="clearAll" class="btn btn-default btn-xs"><span><i class="fa fa-refresh" aria-hidden="true"></i></span> Clear</a></p>
+								</div>
+								</div>
+							</div>
+
+</div><!-- col 2 -->
+</div><!-- row 2 -->
+<div class="row"><!-- row 3 -->
+  <div class="col-md-12">
+    <% if current_user.try(:admin?) %>
 <%= link_to 'Edit', edit_video_path(@video), class: "btn btn-info" %> |
+<% end %>
 <%= link_to 'Back', videos_path, class: "btn btn-warning" %>
 
 <div id="disqus_thread"></div>
@@ -57,3 +82,28 @@
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div><!-- col-12 -->
+</div><!-- row 3 -->
+
+<script type="text/javascript">
+			$(document).ready(function() {
+				var theList = document.getElementById('theList');
+				$("#saveAll").click(function(e) {
+					e.preventDefault();
+					localStorage.setItem('todoList', theList.innerHTML);
+				});
+				$("#clearAll").click(function(e) {
+					e.preventDefault();
+					localStorage.clear();
+					location.reload();
+				});
+
+				loadToDo();
+
+				function loadToDo() {
+				  if ( localStorage.getItem('todoList') ) {
+					theList.innerHTML = localStorage.getItem('todoList');
+				  }
+				}
+			});
+		</script>
