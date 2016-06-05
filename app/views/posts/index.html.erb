@@ -18,41 +18,50 @@
     </div>
   </div>
   <br>
-      <div class="row"><!--row 2 -->
-        <div class="col-md-10">
-    <% @posts.each do |post| %>
-    <div class="panel panel-default">
-      <div class="panel-body bg-info">
-        <tr>
-        <h1><%= link_to "#{post.title}", post %></h1>
-        <div class="text-warning">
-        <span><strong>Post #</span>
-        <%= post.id %></strong>
-        <div><small>posted <%= time_ago_in_words(post.created_at) %> ago</small></div>
-        <div class="tags"><i class="fa fa-tags" aria-hidden="true"></i> <%= post.tags %></div>
-        <p>
-        <span>Posted</span>
-        <%= post.created_at.strftime("%B %-d, %Y") %>
-        </p>
-        </div>
-        <p>
-        <% if post.reputation_for(:votes).to_i > 0%>
-          <h5 class="text-blue"><%= post.reputation_for(:votes).to_i %>
-          <i class="fa fa-star" aria-hidden="true"></i></h5>
-        <% end %>
-        </p>
-        <p><%= raw post.body.truncate(100) %></p>
-        <p><%= link_to 'READ ON', post, class: "btn btn-primary" %>
-        <% if current_user.try(:admin?) %>
-        <%= link_to 'Edit', edit_post_path(post) %>
-        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-        </p>
-      </tr>
-    </div><!-- panel -->
-  </div><!-- panel -->
-    <% end %>
-  </div>
+
+
+<div class="row"><!--row 2 -->
+    <% @posts.in_groups_of(2, false).each do |group| %>
+
+          <tr>
+            <% group.each do |post| %>
+              <div class="col-md-4 text-center">
+                <div class="panel panel-default">
+                  <div class="panel-body bg-info">
+
+                <h1><%= link_to "#{post.title}", post %></h1>
+                <div class="text-warning">
+                <span><strong>Post #</span>
+                <%= post.id %></strong>
+                <div><small>posted <%= time_ago_in_words(post.created_at) %> ago</small></div>
+                <div class="tags"><i class="fa fa-tags" aria-hidden="true"></i> <%= post.tags %></div>
+                <p>
+                <span>Posted</span>
+                <%= post.created_at.strftime("%B %-d, %Y") %>
+                </p>
+                </div>
+                <p>
+                <% if post.reputation_for(:votes).to_i > 0%>
+                  <h5 class="text-blue"><%= post.reputation_for(:votes).to_i %>
+                  <i class="fa fa-star" aria-hidden="true"></i></h5>
+                <% end %>
+                </p>
+                <p><%= raw post.body.truncate(100) %></p>
+                <p><%= link_to 'READ ON', post, class: "btn btn-warning btn-xs btn-block" %>
+                <% if current_user.try(:admin?) %>
+                <%= link_to 'Edit', edit_post_path(post) %>
+                <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+                </p>
+              </div><!-- panel -->
+            </div><!-- panel -->
+              </div><!-- col -->
+
+            <% end %> <!-- group post -->
+          </tr>
+
+    <% end %> <!-- post group -->
+
 </div>
 <div class="row">
   <div class="col-md-2">

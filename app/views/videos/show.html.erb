@@ -28,7 +28,7 @@
 <p>
   <h1 class="text-info"><%= @video.title %></h1>
   <span class="pull-right">
-  <%= link_to " Favorite this Screencast", vote_video_path(type: "up"), method: "post", class: "fa fa-star" %>
+  <%= link_to " Mark as Favorite", vote_video_path(type: "up"), method: "post", class: "fa fa-star btn btn-info btn-xs" %>
   </span>
 </p>
 <p class="text-warning">

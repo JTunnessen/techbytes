@@ -19,17 +19,18 @@
   </div><!-- col -->
 </div><!-- row 1 -->
 <div class="row"><!--row 2 -->
-  <div class="col-md-10">
+  <div class="col-md-6">
     <% @videos.each do |video| %>
     <div class="panel panel-default">
       <div class="panel-body bg-info">
       <tr>
-        <div class="col-md-4"><!-- video -->
+        <div class="col-md-6"><!-- video -->
           <td>
           <div><small>uploaded <%= time_ago_in_words(video.created_at) %> ago</small></div>
           <p><div class="embed-container">
           <%= embed(video.video) %>
           </div></p>
+          <p><%= link_to 'View', video, class: 'btn btn-warning btn-xs btn-block' %>
         </div><!-- video -->
         <div class="col-md-6"><!-- video text -->
           <p>
@@ -47,7 +48,6 @@
             <% end %>
           </p>
           <p><%= raw video.description.truncate(100) %></p>
-          <p><%= link_to 'View', video %>
           <% if current_user.try(:admin?) %>
           <%= link_to 'Edit', edit_video_path(video) %>
           <%= link_to 'Delete', video, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -7,6 +7,7 @@
 <div class="panel panel-warning">
   <div class="panel-heading">
     <%= link_to 'Back', posts_path, class: "btn btn-warning"%>
+<div class="text-center">
 <p>
   <h1><%= @post.title %></h1>
 </p>
@@ -28,8 +29,11 @@
     <i class="fa fa-star" aria-hidden="true"></i></h5>
     <% end %>
     <br>
-
-    <%= link_to " Mark as Favorite", vote_post_path(type: "up"), method: "post", class: "fa fa-star" %>
+</div>
+<div class="pull-right">
+    <%= link_to " Mark as Favorite", vote_post_path(type: "up"), method: "post", class: "fa fa-star btn btn-info btn-xs" %>
+  </div>
+  <br>
 </div>
   <div class="panel-body bg-warning">
 <p>
